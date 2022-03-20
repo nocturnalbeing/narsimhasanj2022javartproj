@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.keybank.exception.BusinessException;
 import com.keybank.exception.EnrollmentRequestInvalidException;
+import com.keybank.exception.O2ServiceException;
+import com.keybank.exception.SystemException;
 import com.keybank.model.EnrollmentRequest;
 import com.keybank.model.EnrollmentResponse;
 import com.keybank.service.EnrollmentService;
@@ -40,7 +43,7 @@ public class EnrollmentController {
 	public EnrollmentResponse  enrollment(@RequestBody EnrollmentRequest enrollmentReqest,
 			@RequestHeader(name="clientId",required =true) String clientId,
 			@RequestHeader(name="requestId",required=true) String requestId,@RequestHeader(name="messageTs",required=true) String messageTs
-			) throws EnrollmentRequestInvalidException {
+			) throws EnrollmentRequestInvalidException, BusinessException, SystemException, O2ServiceException {
 	System.out.println("-------------enter into controller--------Enrollment------");
 	//1.get request data in json format from consumer/client
 	//2.convert json request data into java using jackdon library with help of @RequestBody annotation

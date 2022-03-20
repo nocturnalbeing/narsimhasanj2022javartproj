@@ -5,6 +5,8 @@
  */
 package com.keybank.dao;
 
+import com.keybank.exception.BusinessException;
+import com.keybank.exception.SystemException;
 import com.keybank.model.EnrollmentDaoRequest;
 import com.keybank.model.EnrollmentDaoResponse;
 
@@ -14,5 +16,5 @@ import com.keybank.model.EnrollmentDaoResponse;
  */
 public interface EnrollmentDao {
  
-	public EnrollmentDaoResponse enrollment(EnrollmentDaoRequest daorequest);
+	public EnrollmentDaoResponse enrollment(EnrollmentDaoRequest daorequest) throws BusinessException,SystemException;
 }

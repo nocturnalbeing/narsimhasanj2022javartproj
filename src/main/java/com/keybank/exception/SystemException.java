@@ -9,7 +9,7 @@ package com.keybank.exception;
  * @author YNBR 17-Mar-2022
  *
  */
-public class SystemException {
+public class SystemException extends Exception {
 	public String respCode;
 	public String respMsg;
 	/**

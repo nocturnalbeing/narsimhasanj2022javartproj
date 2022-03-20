@@ -5,6 +5,7 @@
  */
 package com.keybank.svcClient;
 
+import com.keybank.exception.O2ServiceException;
 import com.keybank.model.O2ServiceRequest;
 import com.keybank.model.O2ServiceResponse;
 
@@ -13,6 +14,6 @@ import com.keybank.model.O2ServiceResponse;
  *
  */
 public interface O2ServiceClient {
-	public O2ServiceResponse enrollemnt(O2ServiceRequest request);
+	public O2ServiceResponse enrollemnt(O2ServiceRequest request)throws O2ServiceException;
 
 }

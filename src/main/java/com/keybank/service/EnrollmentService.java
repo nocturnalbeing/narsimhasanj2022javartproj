@@ -5,6 +5,9 @@
  */
 package com.keybank.service;
 
+import com.keybank.exception.BusinessException;
+import com.keybank.exception.O2ServiceException;
+import com.keybank.exception.SystemException;
 import com.keybank.model.EnrollmentRequest;
 import com.keybank.model.EnrollmentResponse;
 
@@ -13,6 +16,6 @@ import com.keybank.model.EnrollmentResponse;
  *
  */
 public interface EnrollmentService {
-public  EnrollmentResponse enollment(EnrollmentRequest req) 
-;
+public  EnrollmentResponse enollment(EnrollmentRequest req) throws BusinessException, SystemException,O2ServiceException;
+
 }

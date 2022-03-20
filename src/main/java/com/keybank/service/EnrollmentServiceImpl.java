@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.keybank.dao.EnrollmentDao;
+import com.keybank.exception.BusinessException;
+import com.keybank.exception.O2ServiceException;
+import com.keybank.exception.SystemException;
 import com.keybank.model.EnrollmentDaoRequest;
 import com.keybank.model.EnrollmentDaoResponse;
 import com.keybank.model.EnrollmentRequest;
@@ -29,7 +32,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 	EnrollmentDao enrollmentDao;
 
 	@Override
-	public EnrollmentResponse enollment(EnrollmentRequest req) {
+	public EnrollmentResponse enollment(EnrollmentRequest req) throws BusinessException, SystemException, O2ServiceException {
 		System.out.println("------Enter into Serive layer---Enrollment---");
 		// TODO Auto-generated method stub
 		//6. get request from controller
