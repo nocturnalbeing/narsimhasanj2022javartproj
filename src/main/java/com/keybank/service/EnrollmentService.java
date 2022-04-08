@@ -5,6 +5,8 @@
  */
 package com.keybank.service;
 
+import org.springframework.stereotype.Component;
+
 import com.keybank.exception.BusinessException;
 import com.keybank.exception.O2ServiceException;
 import com.keybank.exception.SystemException;
@@ -15,7 +17,8 @@ import com.keybank.model.EnrollmentResponse;
  * @author YNBR 14-Mar-2022
  *
  */
+
 public interface EnrollmentService {
-public  EnrollmentResponse enollment(EnrollmentRequest req) throws BusinessException, SystemException,O2ServiceException;
+public  EnrollmentResponse enollment(EnrollmentRequest req,String clientId) throws BusinessException, SystemException,O2ServiceException;
 
 }

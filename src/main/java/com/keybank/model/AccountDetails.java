@@ -8,18 +8,11 @@ package com.keybank.model;
 import lombok.Data;
 
 /**
- * @author YNBR 14-Mar-2022
+ * @author YNBR 05-Apr-2022
  *
  */
 @Data
-public class EnrollmentDaoRequest {
-private String clientId;
-private String mobileNum;
-private String paymentDate;
-private String billDate;
-private String providerType;
-private String customerName;
-private float amount;
+public class AccountDetails {
 private String cardNumber;
 private String cvv;
 private String cardOnName;

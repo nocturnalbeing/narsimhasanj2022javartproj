@@ -19,4 +19,5 @@ private String billDate;
 private String providerType;
 private String customerName;
 private float amount;
+private AccountDetails accountdetails;
 }

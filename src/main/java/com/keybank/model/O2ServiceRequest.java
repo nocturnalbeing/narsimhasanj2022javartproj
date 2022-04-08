@@ -19,5 +19,8 @@ public class O2ServiceRequest {
 	private String providerType;
 	private String customerName;
 	private float amount;
+	private String clientId;
+	private String corrationId;
+	private String mgTs;
 	
 }

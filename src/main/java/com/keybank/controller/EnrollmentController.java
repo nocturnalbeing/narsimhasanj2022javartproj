@@ -52,7 +52,7 @@ public class EnrollmentController {
 	validator.validateRequest(enrollmentReqest);
 	
 	//5.call servicee layer  and get response
-	EnrollmentResponse serviceResponse=enrollmentService.enollment(enrollmentReqest);
+	EnrollmentResponse serviceResponse=enrollmentService.enollment(enrollmentReqest,clientId);
 	
 	//6 prepare final response in controller
 	//7 send final response to consumer/client

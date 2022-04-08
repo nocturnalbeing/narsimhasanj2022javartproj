@@ -17,16 +17,25 @@ import com.keybank.model.EnrollmentRequest;
 @Component
 public class EnrollmentValidator {
 	public void validateRequest(EnrollmentRequest request) throws EnrollmentRequestInvalidException {
-		System.out.println("------------------Enter---------------validator---------------");
 		//todo:validate the requesr ,if ir valid nothing return,else it will exception
+		System.out.println("---------------Enter into validator----------");
 		if(request==null) {
 			throw new EnrollmentRequestInvalidException("err001", "No enrollmen Details");
 		}
 		if(request.getMobileNum()==null||"".equals(request.getMobileNum())) {
-			throw new EnrollmentRequestInvalidException("err001", "MobileNumber Invalid Details");
+			throw new EnrollmentRequestInvalidException("err002", "MobileNumber Invalid Details");
 		}
-		System.out.println("------------------Exit---------------validator---------------");
-		//todo :write valation for all the manditory elements
+		if(request.getBillDate()==null||"".equals(request.getBillDate())) {
+			throw new EnrollmentRequestInvalidException("err003", "BillDate Invalid Details");
+		}
+		if(request.getPaymentDate()==null||"".equals(request.getPaymentDate())) {
+			throw new EnrollmentRequestInvalidException("err004", "PaymentDate Invalid Details");
+		}
+		if(request.getProviderType()==null||"".equals(request.getProviderType())) {
+			throw new EnrollmentRequestInvalidException("err005", "ProviderType Invalid Details");
+		}
+	
+		//todo :write valation for all the manditory elements like cardNumber,cvv,nameoncard,expdate
 	}
 
 }

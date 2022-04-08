@@ -8,6 +8,8 @@ package com.keybank.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.keybank.builder.EnrollmentRequestBuilder;
+import com.keybank.builder.EnrollmentResponseBuilder;
 import com.keybank.dao.EnrollmentDao;
 import com.keybank.exception.BusinessException;
 import com.keybank.exception.O2ServiceException;
@@ -30,30 +32,34 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 	O2ServiceClient o2Serviceclient;
 	@Autowired
 	EnrollmentDao enrollmentDao;
+	
+	@Autowired
+	EnrollmentRequestBuilder enrollmentRequestBuilder;
+	
+	@Autowired
+	EnrollmentResponseBuilder enrollmentResponseBuilder;
+	
 
 	@Override
-	public EnrollmentResponse enollment(EnrollmentRequest req) throws BusinessException, SystemException, O2ServiceException {
+	public EnrollmentResponse enollment(EnrollmentRequest req,String clientId) throws BusinessException, SystemException, O2ServiceException {
 		System.out.println("------Enter into Serive layer---Enrollment---");
+		EnrollmentDaoResponse enrollmentDaoResponse = null ;
 		// TODO Auto-generated method stub
 		//6. get request from controller
-		//7prepare the request for telecom provider like o2 and airtel etc
-		O2ServiceRequest o2ServiceRequest=new O2ServiceRequest();
+		//7prepare the o2ServiceRequest
+		O2ServiceRequest o2ServiceRequest = enrollmentRequestBuilder.buildO2Request(req);
 		//8 call 02 service  and get response
 		O2ServiceResponse	o2ServiceResponse=o2Serviceclient.enrollemnt(o2ServiceRequest);
-		//9 if the response is success than do dao call  else throw the user defined exception
-		EnrollmentDaoRequest enrollmentDaoRequest=new EnrollmentDaoRequest();
-		EnrollmentDaoResponse enrollmentDaoResponse = null ;
+	
 		if("0".equals(o2ServiceResponse.getRespCode())) {
+			EnrollmentDaoRequest enrollmentDaoRequest = enrollmentRequestBuilder.buildEnrollDaoRquest(req,clientId);
 			enrollmentDaoResponse= enrollmentDao.enrollment(enrollmentDaoRequest);
 		}
 		
 		
-		//15. now got resp  from 02 and dao get intg response from intg layer
+		// prepare enrollment response
  
-		EnrollmentResponse enrollmentResponse=new EnrollmentResponse();
-	    enrollmentResponse.setEnrollmentStatus(enrollmentDaoResponse.getEnrollmentStatus());
-	    enrollmentResponse.setRespCode(enrollmentDaoResponse.getRespCode());
-	    enrollmentResponse.setRespMsg(enrollmentDaoResponse.getRespMsg());
+		EnrollmentResponse enrollmentResponse = enrollmentResponseBuilder.buildEnrollmentResponse(enrollmentDaoResponse);
 		
 		//16. perform some business logic likesorting,paging pagination, ---- etc
 		//17  prepare the final service response
